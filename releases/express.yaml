@@ -2,11 +2,15 @@ apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
   name: expressjs-k8s
+  annotations:
+    fluxcd.io/automated: "true"
+    # filter.fluxcd.io/chart-image: glob:alexellis2/service:.*.*
 spec:
+  releaseName: dev
   chart:
-    repository: https://alexellis.github.io/expressjs-k8s/
-    name: expressjs-k8s
-    version: 0.1.1
+    git: git@github.com:omniasameh92/flux.git
+    path: charts/expressjs-k8s
+    ref: master
   values:
     ingress:
       enabled: false
