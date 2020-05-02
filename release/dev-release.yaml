@@ -1,0 +1,19 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: dev-flaskapp
+  namespace: dev
+  annotations:
+    fluxcd.io/automated: "true"
+    filter.fluxcd.io/chart-image: glob:develop-v1.*.*
+spec:
+  releaseName: dev
+  chart:
+    git: git@github.com:omniasameh92/flux.git
+    path: charts/flaskapp
+    ref: master
+  # values:
+  #   image:
+  #     repository: omniasameh92/flaskapp
+  #     tag: develop-v1.8.1
+  #   replicaCount: 1
